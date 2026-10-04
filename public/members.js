@@ -36,6 +36,18 @@ async function request(path, options = {}) {
   }
   return data
 }
+function renderTableSkeleton() {
+  $('#rows').innerHTML = Array.from({ length: 6 }).map(() => `
+    <tr>
+      <td><div class="table-skeleton"></div></td>
+      <td><div class="table-skeleton"></div></td>
+      <td><div class="table-skeleton"></div></td>
+      <td><div class="table-skeleton"></div></td>
+      <td><div class="table-skeleton"></div></td>
+      <td><div class="table-skeleton"></div></td>
+    </tr>`).join('')
+}
+
 function renderRows(rows) {
   $('#rows').innerHTML = rows.length ? rows.map(row => `
     <tr>
@@ -48,6 +60,7 @@ function renderRows(rows) {
     </tr>`).join('') : '<tr><td colspan="6">Aucun membre trouvé.</td></tr>'
 }
 async function loadMembers() {
+  renderTableSkeleton()
   const q = encodeURIComponent($('#member-search').value.trim())
   const sex = encodeURIComponent($('#member-sex').value)
   const data = await request(`/api/admin/members?page=${page}&limit=${limit}&q=${q}&sex=${sex}`)
