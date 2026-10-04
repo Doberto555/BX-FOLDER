@@ -24,13 +24,18 @@
       <div class="card-head"><div><span class="eyebrow">VCF EXPORT</span><h2>Fichier contacts</h2></div><div class="version-pill">BX</div></div>
       <p style="color:#8b877e;line-height:1.6">Télécharge tous les contacts enregistrés. Chaque contact est exporté avec le préfixe <b style="color:#e0b543">BX</b> devant son surnom.</p>
       <div class="admin-actions">
+        <select id="vcf-part" class="btn" aria-label="Partie VCF">
+          <option value="all">Tous les contacts</option>
+        </select>
         <button id="download-vcf" class="btn gold">Télécharger le fichier VCF</button>
         <a id="group-link" class="btn" href="#" target="_blank" rel="noopener" style="text-decoration:none;display:inline-grid;place-items:center">Ouvrir le groupe</a>
       </div>
+      <p id="vcf-note" style="color:#6f6c64;font-size:.75rem;margin:12px 0 0">Les gros exports peuvent être téléchargés en plusieurs parties de 5 000 contacts.</p>
     </section>
 
     <section class="admin-card">
       <div class="card-head"><div><span class="eyebrow">RECENT MEMBERS</span><h2>Dernières inscriptions</h2></div></div>
+      <div class="field" style="margin-bottom:14px"><b>⌕</b><input id="member-search" type="search" placeholder="Rechercher nom, numéro ou pays"></div>
       <div class="table-wrap">
         <table>
           <thead><tr><th>ID</th><th>Nom VCF</th><th>Téléphone</th><th>Sexe</th><th>Pays</th><th>Date</th></tr></thead>
