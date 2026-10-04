@@ -30,6 +30,22 @@ function formatDate(value) {
   }
 }
 
+function renderSkeleton() {
+  $('#public-member-grid').innerHTML = Array.from({ length: 6 }).map(() => `
+    <article class="public-member-card skeleton skeleton-card">
+      <div class="member-avatar"></div>
+      <div class="member-card-copy">
+        <span class="skeleton-line long"></span>
+        <span class="skeleton-line medium"></span>
+      </div>
+      <div class="member-card-meta">
+        <span class="skeleton-line short"></span>
+        <span class="skeleton-line medium"></span>
+      </div>
+    </article>
+  `).join('')
+}
+
 function render(rows) {
   const grid = $('#public-member-grid')
 
@@ -58,6 +74,7 @@ function render(rows) {
 }
 
 async function loadMembers() {
+  renderSkeleton()
   const sex = encodeURIComponent($('#public-member-sex').value)
   const response = await fetch(`/api/members?page=${page}&limit=${limit}&sex=${sex}`, { cache: 'no-store' })
   const data = await response.json().catch(() => ({}))
