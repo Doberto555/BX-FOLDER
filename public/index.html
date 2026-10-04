@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080805">
+  <title>BX FOLDER</title>
+  <meta name="description" content="Rejoins BX FOLDER et ajoute ton contact à notre communauté.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="grain"></div>
+  <main class="page-shell">
+    <header class="brand-block">
+      <div class="brand-mark">BX</div>
+      <h1>BX FOLDER</h1>
+      <p>CONTACT NETWORK</p>
+      <span class="gold-line"></span>
+    </header>
+
+    <section class="register-card">
+      <div class="card-head">
+        <div>
+          <span class="eyebrow">WELCOME TO</span>
+          <h2>BX Folder</h2>
+        </div>
+        <div class="version-pill">BX</div>
+      </div>
+
+      <form id="register-form" novalidate>
+        <label>
+          <span>Surnom</span>
+          <div class="field"><b>BX</b><input id="surname" name="surname" maxlength="60" autocomplete="nickname" placeholder="Entre ton surnom" required></div>
+        </label>
+
+        <label>
+          <span>Numéro de téléphone</span>
+          <div class="field"><b>+</b><input id="phone" name="phone" inputmode="numeric" autocomplete="tel" placeholder="509XXXXXXXX" maxlength="18" required></div>
+          <small>Ajoute l'indicatif du pays. Exemple Haïti : 509.</small>
+        </label>
+
+        <fieldset>
+          <legend>Sexe</legend>
+          <div class="sex-grid">
+            <label class="choice"><input type="radio" name="sex" value="male" required><span>Garçon</span></label>
+            <label class="choice"><input type="radio" name="sex" value="female" required><span>Fille</span></label>
+          </div>
+        </fieldset>
+
+        <label>
+          <span>Pays</span>
+          <div class="field select-field">
+            <select id="country" name="country" required>
+              <option value="">Choisir ton pays</option>
+              <option>Haïti</option><option>République dominicaine</option><option>États-Unis</option><option>Canada</option>
+              <option>France</option><option>Brésil</option><option>Chili</option><option>Mexique</option><option>Colombie</option>
+              <option>Jamaïque</option><option>Bahamas</option><option>Guadeloupe</option><option>Martinique</option><option>Guyane française</option>
+              <option>Autre</option>
+            </select>
+          </div>
+        </label>
+
+        <button id="submit-btn" class="gold-button" type="submit">REJOINDRE BX FOLDER <span>→</span></button>
+        <p id="form-message" class="form-message" aria-live="polite"></p>
+      </form>
+
+      <div class="capacity-box">
+        <div class="capacity-row"><span>Capacité</span><b id="capacity-text">— / 50 000</b></div>
+        <div class="progress"><span id="capacity-progress"></span></div>
+        <small id="capacity-note">Chargement des inscriptions…</small>
+      </div>
+    </section>
+
+    <footer>
+      <span>BX FOLDER</span>
+      <span id="prefix-note">PREFIX BX</span>
+    </footer>
+  </main>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
