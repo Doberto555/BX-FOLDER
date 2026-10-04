@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api/admin
 
-Sitemap: https://bx-folder.vercel.app/sitemap.xml
+Sitemap: https://bx-folder.vercel.app/sitemap.txt
