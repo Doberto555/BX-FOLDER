@@ -199,3 +199,408 @@ td { color:#c8c4bb; }
 .nav-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
 .members-table-wrap{margin-top:16px}
 @media(max-width:700px){.public-admin-row{justify-content:center}.site-admin-button{width:100%}}
+
+
+/* ===== BX FOLDER public polish v1.4 ===== */
+.page-shell{
+  width:min(100% - 32px,680px);
+  padding:24px 0 32px;
+}
+.brand-block{
+  position:relative;
+  padding:0 0 24px;
+}
+.public-nav{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-bottom:18px;
+}
+.site-nav-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:0 14px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:999px;
+  background:rgba(255,255,255,.025);
+  color:#aaa69d;
+  text-decoration:none;
+  font-size:.7rem;
+  font-weight:850;
+  letter-spacing:.04em;
+  transition:.2s ease;
+}
+.site-nav-button:hover{
+  color:var(--text);
+  border-color:rgba(217,171,57,.26);
+  background:rgba(217,171,57,.06);
+}
+.site-nav-button.admin{
+  color:var(--gold2);
+  border-color:rgba(217,171,57,.28);
+  background:rgba(217,171,57,.07);
+}
+.brand-mark{
+  width:50px;
+  height:50px;
+  margin-bottom:12px;
+}
+.brand-block h1{
+  font-size:clamp(1.9rem,5vw,2.65rem);
+  letter-spacing:.22em;
+  text-indent:.22em;
+}
+.brand-block p{
+  margin-top:7px;
+  font-size:.66rem;
+  letter-spacing:.36em;
+  text-indent:.36em;
+}
+.gold-line{margin-top:15px}
+.brand-intro{
+  width:min(100%,500px);
+  margin:15px auto 0;
+  color:#7f7b72;
+  font-size:.78rem;
+  line-height:1.65;
+  letter-spacing:0;
+  text-align:center;
+}
+.register-card{
+  max-width:620px;
+  margin:0 auto;
+  padding:24px;
+  border-radius:22px;
+  border-color:rgba(255,255,255,.09);
+  background:
+    linear-gradient(180deg,rgba(25,25,21,.98),rgba(10,10,8,.99));
+  box-shadow:
+    0 26px 80px rgba(0,0,0,.42),
+    inset 0 1px rgba(255,255,255,.04);
+}
+.register-card .card-head{margin-bottom:22px}
+.card-subtitle{
+  margin:6px 0 0!important;
+  color:#77736b!important;
+  font-size:.72rem!important;
+  letter-spacing:0!important;
+  text-indent:0!important;
+}
+.field{height:56px}
+.choice span{height:54px}
+.gold-button{height:58px;border-radius:14px}
+.capacity-box{margin-top:22px;padding-top:18px}
+.page-shell>footer{
+  max-width:620px;
+  margin:0 auto;
+  padding-top:20px;
+}
+
+/* Public member directory */
+.directory-shell{
+  width:min(100% - 36px,1120px);
+  margin:0 auto;
+  padding:28px 0 46px;
+}
+.directory-topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:0 0 26px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.directory-brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  color:var(--text);
+  text-decoration:none;
+}
+.directory-brand-mark{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(217,171,57,.38);
+  border-radius:12px;
+  color:var(--gold2);
+  font-weight:950;
+  font-size:.78rem;
+  background:rgba(217,171,57,.05);
+}
+.directory-brand>span:last-child{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.directory-brand strong{
+  letter-spacing:.08em;
+  font-size:.86rem;
+}
+.directory-brand small{
+  color:#69665f;
+  font-size:.52rem;
+  letter-spacing:.2em;
+}
+.directory-nav{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.directory-nav a{
+  min-height:38px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 13px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:999px;
+  color:#9a968d;
+  text-decoration:none;
+  font-size:.7rem;
+  font-weight:800;
+}
+.directory-nav a:last-child{
+  color:var(--gold2);
+  border-color:rgba(217,171,57,.25);
+  background:rgba(217,171,57,.055);
+}
+.directory-hero{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:30px;
+  align-items:end;
+  padding:54px 0 28px;
+}
+.hero-kicker{
+  color:var(--gold);
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.2em;
+}
+.directory-hero h1{
+  margin:10px 0 10px;
+  font-size:clamp(2rem,5vw,3.4rem);
+  letter-spacing:-.045em;
+}
+.directory-hero p{
+  max-width:620px;
+  margin:0;
+  color:#88847b;
+  line-height:1.65;
+}
+.directory-total{
+  min-width:155px;
+  padding:18px 20px;
+  border:1px solid rgba(217,171,57,.18);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(217,171,57,.07),rgba(255,255,255,.018));
+  text-align:right;
+}
+.directory-total strong{
+  display:block;
+  color:var(--gold2);
+  font-size:2rem;
+}
+.directory-total span{
+  color:#77736b;
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+.directory-card{
+  padding:22px;
+  border:1px solid rgba(255,255,255,.075);
+  border-radius:22px;
+  background:linear-gradient(180deg,rgba(19,19,16,.96),rgba(10,10,8,.98));
+  box-shadow:0 24px 80px rgba(0,0,0,.35);
+}
+.directory-tools{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-bottom:18px;
+}
+.directory-select{
+  min-height:44px;
+  padding:0 38px 0 14px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  background:#0b0b09;
+  color:#c7c3b9;
+  outline:0;
+}
+.public-member-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.public-member-card{
+  min-width:0;
+  display:grid;
+  grid-template-columns:46px minmax(0,1fr);
+  gap:12px;
+  padding:15px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  background:#0a0a08;
+}
+.member-avatar{
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(217,171,57,.26);
+  border-radius:14px;
+  color:var(--gold2);
+  background:rgba(217,171,57,.055);
+  font-weight:950;
+}
+.member-card-copy{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.member-card-copy strong{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:.9rem;
+}
+.member-card-copy span{
+  margin-top:4px;
+  color:#77736b;
+  font-size:.72rem;
+}
+.member-card-meta{
+  grid-column:1 / -1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding-top:11px;
+  border-top:1px solid rgba(255,255,255,.045);
+}
+.member-sex{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:0 9px;
+  border-radius:999px;
+  border:1px solid rgba(217,171,57,.16);
+  color:#b9a66f;
+  font-size:.64rem;
+  font-weight:850;
+}
+.member-sex.female{
+  border-color:rgba(238,154,194,.16);
+  color:#c995ae;
+}
+.member-card-meta small{
+  color:#57544e;
+  font-size:.62rem;
+}
+.directory-empty{
+  grid-column:1 / -1;
+  padding:42px 20px;
+  border:1px dashed rgba(255,255,255,.08);
+  border-radius:16px;
+  color:#77736b;
+  text-align:center;
+}
+.directory-empty.error{color:#d98b8b}
+.directory-pagination{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-top:18px;
+}
+.directory-pagination span{
+  min-width:130px;
+  color:#77736b;
+  font-size:.72rem;
+  text-align:center;
+}
+.directory-privacy{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:18px 0 0;
+  color:#65625b;
+  font-size:.7rem;
+}
+.directory-privacy span{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--success);
+  box-shadow:0 0 14px rgba(80,216,144,.4);
+}
+.directory-privacy p{margin:0}
+
+/* Final mobile overrides kept at the end so they win */
+@media(max-width:700px){
+  .page-shell{
+    width:min(100% - 22px,520px);
+    padding:12px 0 22px;
+  }
+  .public-nav{
+    justify-content:center;
+    margin-bottom:14px;
+  }
+  .site-nav-button{
+    flex:1;
+    min-height:35px;
+    padding:0 10px;
+    font-size:.64rem;
+  }
+  .brand-block{padding-bottom:17px}
+  .brand-mark{width:42px;height:42px;margin-bottom:9px;font-size:.82rem}
+  .brand-block h1{font-size:1.5rem;letter-spacing:.17em;text-indent:.17em}
+  .brand-block p{font-size:.56rem;letter-spacing:.27em;text-indent:.27em}
+  .gold-line{width:50px;margin-top:11px}
+  .brand-intro{margin-top:11px;font-size:.68rem;line-height:1.5}
+  .register-card{padding:16px;border-radius:18px}
+  .register-card .card-head{margin-bottom:17px}
+  .card-head h2{font-size:1.18rem}
+  .card-subtitle{font-size:.65rem!important}
+  .version-pill{width:42px;height:42px;font-size:.78rem}
+  form{gap:13px}
+  label>span,legend{margin-bottom:6px;font-size:.7rem}
+  label small{margin-top:5px;font-size:.61rem}
+  .field{height:49px;padding:0 12px}
+  .choice span{height:49px;font-size:.76rem}
+  .consent-row{padding:10px 11px!important;gap:8px!important}
+  .consent-row input{width:15px!important;height:15px!important;flex-basis:15px!important}
+  .consent-row span{font-size:.62rem!important;line-height:1.4!important}
+  .gold-button{height:50px;font-size:.7rem}
+  .capacity-box{margin-top:16px;padding-top:15px}
+  .page-shell>footer{padding-top:16px}
+
+  .directory-shell{width:min(100% - 22px,560px);padding:14px 0 28px}
+  .directory-topbar{align-items:flex-start;padding-bottom:16px}
+  .directory-brand strong{font-size:.76rem}
+  .directory-brand small{font-size:.46rem}
+  .directory-nav{gap:6px}
+  .directory-nav a{min-height:34px;padding:0 9px;font-size:.61rem}
+  .directory-hero{grid-template-columns:1fr;gap:16px;padding:30px 0 18px}
+  .directory-hero h1{font-size:2rem;margin:8px 0}
+  .directory-hero p{font-size:.76rem}
+  .directory-total{min-width:0;width:100%;display:flex;align-items:center;justify-content:space-between;padding:13px 15px;text-align:left}
+  .directory-total strong{font-size:1.45rem}
+  .directory-card{padding:14px;border-radius:18px}
+  .directory-tools{justify-content:stretch}
+  .directory-select{flex:1;min-width:0}
+  .directory-tools .btn{padding:0 12px}
+  .public-member-grid{grid-template-columns:1fr;gap:9px}
+  .public-member-card{padding:13px}
+  .directory-pagination{gap:7px}
+  .directory-pagination .btn{padding:0 10px;min-height:40px;font-size:.7rem}
+  .directory-pagination span{min-width:95px;font-size:.64rem}
+  .directory-privacy{align-items:flex-start;padding-top:14px;font-size:.62rem;line-height:1.45}
+}
