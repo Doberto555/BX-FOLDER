@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080805">
+  <title>Membres — BX FOLDER</title>
+  <meta name="description" content="Liste publique anonymisée des membres BX FOLDER.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=1.4.0">
+</head>
+<body>
+  <main class="directory-shell">
+    <header class="directory-topbar">
+      <a class="directory-brand" href="/">
+        <span class="directory-brand-mark">BX</span>
+        <span><strong>BX FOLDER</strong><small>CONTACT NETWORK</small></span>
+      </a>
+      <div class="directory-nav">
+        <a href="/">Inscription</a>
+        <a href="/admin">Administration</a>
+      </div>
+    </header>
+
+    <section class="directory-hero">
+      <div>
+        <span class="hero-kicker">COMMUNAUTÉ BX FOLDER</span>
+        <h1>Liste des membres</h1>
+        <p>Découvre les inscriptions du réseau. Les noms sont abrégés et les numéros de téléphone ne sont jamais affichés ici.</p>
+      </div>
+      <div class="directory-total">
+        <strong id="public-member-total">—</strong>
+        <span>membres</span>
+      </div>
+    </section>
+
+    <section class="directory-card">
+      <div class="directory-tools">
+        <select id="public-member-sex" class="directory-select">
+          <option value="">Tous les membres</option>
+          <option value="male">Garçons</option>
+          <option value="female">Filles</option>
+        </select>
+        <button id="public-member-refresh" class="btn gold" type="button">Actualiser</button>
+      </div>
+
+      <div id="public-member-grid" class="public-member-grid" aria-live="polite">
+        <div class="directory-empty">Chargement des membres…</div>
+      </div>
+
+      <div class="directory-pagination">
+        <button id="public-prev-page" class="btn" type="button">Précédent</button>
+        <span id="public-page-info">Page 1</span>
+        <button id="public-next-page" class="btn" type="button">Suivant</button>
+      </div>
+    </section>
+
+    <div class="directory-privacy">
+      <span></span>
+      <p>Protection de la vie privée : aucun numéro de téléphone n’est exposé sur cette page publique.</p>
+    </div>
+  </main>
+  <script src="/public-members.js?v=1.4.0" defer></script>
+</body>
+</html>
