@@ -157,3 +157,10 @@ td { color:#c8c4bb; }
 
 .footer-links .admin-link{color:var(--gold2);font-weight:800}
 .footer-links .admin-link:hover{color:#ffe18a}
+
+.public-admin-row{display:flex;justify-content:flex-end;margin-bottom:16px}
+.site-admin-button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 15px;border-radius:12px;border:1px solid rgba(217,171,57,.28);background:rgba(217,171,57,.07);color:var(--gold2);font-size:.75rem;font-weight:900;letter-spacing:.08em;text-decoration:none}
+.site-admin-button:hover{background:rgba(217,171,57,.12);border-color:rgba(217,171,57,.48)}
+.nav-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.members-table-wrap{margin-top:16px}
+@media(max-width:700px){.public-admin-row{justify-content:center}.site-admin-button{width:100%}}
