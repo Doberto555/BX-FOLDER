@@ -523,7 +523,12 @@ app.get('/admin/members', (_req, res) => res.sendFile(path.join(__dirname, 'publ
 app.get('/privacy', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'privacy.html')))
 app.get('/terms', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'terms.html')))
 app.get('/remove', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'remove.html')))
-app.use((_req, res) => res.status(404).json({ ok: false, error: 'Not found' }))
+app.use((req, res) => {
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ ok: false, error: 'Not found' })
+  }
+  return res.status(404).sendFile(path.join(__dirname, 'public', '404.html'))
+})
 
 if (!process.env.VERCEL) {
   app.listen(PORT, '0.0.0.0', () => console.log(`BX FOLDER running on http://0.0.0.0:${PORT}`))
