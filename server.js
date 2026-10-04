@@ -255,6 +255,54 @@ app.post('/api/removal-request', async (req, res) => {
   }
 })
 
+function maskPublicDisplayName(value = '') {
+  const raw = clean(value)
+  const prefix = raw.toUpperCase().startsWith(CONTACT_PREFIX.toUpperCase() + ' ')
+    ? CONTACT_PREFIX + ' '
+    : ''
+  const base = prefix ? raw.slice(prefix.length).trim() : raw
+  if (!base) return CONTACT_PREFIX
+  const first = base.charAt(0).toUpperCase()
+  return `${CONTACT_PREFIX} ${first}${'•'.repeat(Math.min(5, Math.max(2, base.length - 1)))}`
+}
+
+app.get('/api/members', async (req, res) => {
+  try {
+    const page = Math.max(1, Number.parseInt(String(req.query.page || '1'), 10) || 1)
+    const limit = Math.min(48, Math.max(12, Number.parseInt(String(req.query.limit || '24'), 10) || 24))
+    const sex = ['male', 'female'].includes(clean(req.query.sex)) ? clean(req.query.sex) : ''
+    const country = normalizeCountry(req.query.country)
+    const from = (page - 1) * limit
+    const to = from + limit - 1
+
+    let query = supabase
+      .from('bx_registrations')
+      .select('id, display_name, sex, country, created_at', { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .range(from, to)
+
+    if (sex) query = query.eq('sex', sex)
+    if (country) query = query.eq('country', country)
+
+    const { data, count, error } = await query
+    if (error) throw error
+
+    const rows = (data || []).map(row => ({
+      id: row.id,
+      display_name: maskPublicDisplayName(row.display_name),
+      sex: row.sex,
+      country: row.country,
+      created_at: row.created_at
+    }))
+
+    res.set('Cache-Control', 'no-store')
+    res.json({ ok: true, page, limit, total: Number(count || 0), rows })
+  } catch (error) {
+    console.error('[public members]', error?.message || error)
+    res.status(500).json({ ok: false, error: 'Impossible de charger les membres.' })
+  }
+})
+
 app.get('/api/admin/overview', adminOnly, async (_req, res) => {
   try {
     const [{ data: statsData, error: statsError }, { data: recent, error: recentError }, { data: groups, error: groupsError }, maintenance] = await Promise.all([
@@ -469,6 +517,7 @@ app.get('/api/admin/download-csv', adminOnly, async (_req, res) => {
 })
 
 app.get('/health', (_req, res) => res.json({ ok: true, service: 'BX FOLDER', maxRegistrations: MAX_REGISTRATIONS }))
+app.get('/members', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'public-members.html')))
 app.get('/admin', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'admin.html')))
 app.get('/admin/members', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'members.html')))
 app.get('/privacy', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'privacy.html')))
