@@ -11,37 +11,70 @@
   <main class="admin-shell">
     <div class="admin-top">
       <div class="admin-title"><span class="eyebrow">OWNER CONTROL</span><h1>BX FOLDER ADMIN</h1></div>
-      <div class="admin-actions"><button id="refresh" class="btn">Actualiser</button><button id="logout" class="btn danger">Déconnexion</button></div>
+      <div class="admin-actions">
+        <button id="refresh" class="btn">Actualiser</button>
+        <button id="logout" class="btn danger">Déconnexion</button>
+      </div>
     </div>
 
-    <section class="admin-grid">
+    <section class="admin-grid admin-grid-5">
       <article class="stat"><span>Inscrits</span><strong id="stat-total">—</strong></article>
+      <article class="stat"><span>Aujourd’hui</span><strong id="stat-today">—</strong></article>
+      <article class="stat"><span>7 derniers jours</span><strong id="stat-week">—</strong></article>
+      <article class="stat"><span>Garçons / Filles</span><strong id="stat-gender">—</strong></article>
       <article class="stat"><span>Places restantes</span><strong id="stat-remaining">—</strong></article>
-      <article class="stat"><span>Capacité</span><strong id="stat-max">50 000</strong></article>
     </section>
 
     <section class="admin-card">
-      <div class="card-head"><div><span class="eyebrow">VCF EXPORT</span><h2>Fichier contacts</h2></div><div class="version-pill">BX</div></div>
-      <p style="color:#8b877e;line-height:1.6">Télécharge tous les contacts enregistrés. Chaque contact est exporté avec le préfixe <b style="color:#e0b543">BX</b> devant son surnom.</p>
-      <div class="admin-actions">
-        <select id="vcf-part" class="btn" aria-label="Partie VCF">
-          <option value="all">Tous les contacts</option>
-        </select>
-        <button id="download-vcf" class="btn gold">Télécharger le fichier VCF</button>
-        <a id="group-link" class="btn" href="#" target="_blank" rel="noopener" style="text-decoration:none;display:inline-grid;place-items:center">Ouvrir le groupe</a>
+      <div class="card-head"><div><span class="eyebrow">SYSTEM</span><h2>Maintenance</h2></div><div id="maintenance-state" class="status-pill">—</div></div>
+      <div class="settings-row">
+        <label class="toggle-row"><input id="maintenance-enabled" type="checkbox"><span>Activer le mode maintenance</span></label>
+        <div class="field flex-field"><b>MSG</b><input id="maintenance-message" maxlength="180" placeholder="Message affiché aux visiteurs"></div>
+        <button id="save-maintenance" class="btn gold">Enregistrer</button>
       </div>
-      <p id="vcf-note" style="color:#6f6c64;font-size:.75rem;margin:12px 0 0">Les gros exports peuvent être téléchargés en plusieurs parties de 5 000 contacts.</p>
     </section>
 
     <section class="admin-card">
-      <div class="card-head"><div><span class="eyebrow">RECENT MEMBERS</span><h2>Dernières inscriptions</h2></div></div>
-      <div class="field" style="margin-bottom:14px"><b>⌕</b><input id="member-search" type="search" placeholder="Rechercher nom, numéro ou pays"></div>
+      <div class="card-head"><div><span class="eyebrow">WHATSAPP ROUTING</span><h2>Groupes BX FOLDER</h2></div><div class="version-pill">BX</div></div>
+      <form id="group-form" class="group-form">
+        <div class="field"><b>Nom</b><input id="group-name" maxlength="80" placeholder="Groupe 2" required></div>
+        <div class="field"><b>URL</b><input id="group-url" type="url" placeholder="https://chat.whatsapp.com/..." required></div>
+        <div class="field"><b>Max</b><input id="group-capacity" type="number" min="1" max="100000" value="1024" required></div>
+        <div class="field"><b>Prio</b><input id="group-priority" type="number" min="0" max="9999" value="100" required></div>
+        <button class="btn gold" type="submit">Ajouter le groupe</button>
+      </form>
+      <div id="groups-list" class="groups-list"></div>
+    </section>
+
+    <section class="admin-card">
+      <div class="card-head"><div><span class="eyebrow">VCF / BACKUP</span><h2>Exports contacts</h2></div></div>
+      <p class="admin-copy">Télécharge tous les contacts enregistrés avec le préfixe BX. Pour les gros volumes, utilise les parties de 5 000 contacts.</p>
+      <div class="admin-actions">
+        <select id="vcf-part" class="btn" aria-label="Partie VCF"><option value="all">Tous les contacts</option></select>
+        <button id="download-vcf" class="btn gold">Télécharger VCF</button>
+        <button id="download-csv" class="btn">Télécharger CSV</button>
+      </div>
+    </section>
+
+    <section class="admin-card">
+      <div class="card-head"><div><span class="eyebrow">MEMBERS</span><h2>Base complète</h2></div><div id="member-count" class="status-pill">—</div></div>
+      <div class="member-tools">
+        <div class="field flex-field"><b>⌕</b><input id="member-search" type="search" placeholder="Nom, numéro ou pays"></div>
+        <select id="member-sex" class="btn"><option value="">Tous les sexes</option><option value="male">Garçons</option><option value="female">Filles</option></select>
+        <button id="member-search-btn" class="btn">Rechercher</button>
+      </div>
       <div class="table-wrap">
         <table>
           <thead><tr><th>ID</th><th>Nom VCF</th><th>Téléphone</th><th>Sexe</th><th>Pays</th><th>Date</th></tr></thead>
           <tbody id="rows"><tr><td colspan="6">Chargement…</td></tr></tbody>
         </table>
       </div>
+      <div class="pager"><button id="prev-page" class="btn">Précédent</button><span id="page-info">Page 1</span><button id="next-page" class="btn">Suivant</button></div>
+    </section>
+
+    <section class="admin-card">
+      <div class="card-head"><div><span class="eyebrow">PRIVACY</span><h2>Demandes de retrait</h2></div></div>
+      <div id="removal-list" class="removal-list"><p class="admin-copy">Chargement…</p></div>
     </section>
   </main>
 
@@ -49,9 +82,10 @@
     <form id="login-form" class="login-card">
       <span class="eyebrow">OWNER ACCESS</span>
       <h2>BX FOLDER Admin</h2>
-      <p style="color:#817d74">Entre ton ADMIN_TOKEN.</p>
-      <input id="admin-token" type="password" autocomplete="current-password" placeholder="ADMIN_TOKEN" required>
-      <button class="btn gold" style="width:100%" type="submit">Ouvrir le panel</button>
+      <p class="admin-copy">Connecte-toi avec le compte propriétaire.</p>
+      <input id="admin-email" type="email" autocomplete="username" placeholder="Email admin" required>
+      <input id="admin-password" type="password" autocomplete="current-password" placeholder="Mot de passe" required>
+      <button class="btn gold full-btn" type="submit">Se connecter</button>
       <p id="login-error" class="form-message error"></p>
     </form>
   </div>
