@@ -116,3 +116,41 @@ td { color:#c8c4bb; }
 .consent-row input{width:18px;height:18px;flex:0 0 18px;margin:2px 0 0;accent-color:var(--gold)}
 .consent-row span{margin:0!important;color:#8f8b82!important;font-size:.74rem!important;line-height:1.5!important;font-weight:650!important}
 #vcf-part{appearance:auto;min-width:190px}
+
+.maintenance-banner{margin:0 0 16px;padding:13px 16px;border:1px solid rgba(255,105,105,.2);border-radius:14px;background:rgba(255,105,105,.06);color:#ffb1b1;font-size:.82rem;text-align:center}
+.success-panel{text-align:center;padding:12px 0 4px}
+.success-mark{width:62px;height:62px;margin:18px auto 14px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(80,216,144,.4);color:var(--success);font-size:1.7rem;background:rgba(80,216,144,.05)}
+.success-panel h3{font-size:1.45rem;margin:0 0 8px}
+.success-panel p{color:var(--muted);margin:0 0 20px}
+.success-link{display:flex;align-items:center;justify-content:center;text-decoration:none}
+.text-button{border:0;background:transparent;color:#8d897f;margin-top:14px;cursor:pointer}
+.footer-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.footer-links a,.back-link{color:#77736b;text-decoration:none}
+.footer-links a:hover,.back-link:hover{color:var(--gold2)}
+.admin-grid-5{grid-template-columns:repeat(5,1fr)}
+.settings-row,.member-tools,.group-form{display:grid;grid-template-columns:1fr 2fr auto;gap:12px;align-items:center}
+.group-form{grid-template-columns:1fr 2fr .7fr .7fr auto}
+.flex-field{min-width:0}
+.toggle-row{display:flex;align-items:center;gap:10px}
+.toggle-row input{width:18px;height:18px}
+.toggle-row span{margin:0}
+.status-pill{display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:0 11px;border-radius:999px;border:1px solid rgba(255,255,255,.08);color:#8e8a81;font-size:.7rem;font-weight:900}
+.status-pill.active{color:#ff9a9a;border-color:rgba(255,105,105,.24);background:rgba(255,105,105,.05)}
+.groups-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.group-item,.removal-item{padding:16px;border:1px solid rgba(255,255,255,.06);border-radius:16px;background:#0b0b09}
+.group-item-head,.group-meta,.removal-item>div{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.group-item-head div{display:flex;flex-direction:column;gap:4px}
+.group-item-head span,.group-meta span,.removal-item span{color:#716e67;font-size:.72rem}
+.group-item a{display:block;color:#8b877e;font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:10px 0}
+.mini-progress{height:5px;background:#050504;border-radius:99px;overflow:hidden;margin-top:10px}
+.mini-progress span{display:block;height:100%;background:linear-gradient(90deg,#b98219,#f0c957)}
+.switch input{display:none}.switch span{display:block;width:42px;height:24px;border-radius:99px;background:#25251f;position:relative;cursor:pointer}.switch span:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#77736a;left:3px;top:3px;transition:.2s}.switch input:checked+span{background:rgba(217,171,57,.22)}.switch input:checked+span:after{left:21px;background:var(--gold2)}
+.pager{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:16px}
+.admin-copy{color:#8b877e;line-height:1.6}
+.removal-list{display:grid;gap:10px}.removal-item p{color:#9b978e}
+.full-btn{width:100%}
+.legal-shell{width:min(100% - 28px,760px);margin:0 auto;padding:40px 0 60px}
+.legal-card{margin-top:18px;padding:30px;border:1px solid rgba(255,255,255,.07);border-radius:24px;background:linear-gradient(180deg,rgba(24,24,20,.97),rgba(11,11,9,.98))}
+.legal-card h1{font-size:clamp(2rem,6vw,3rem);margin:8px 0 24px}.legal-card h2{font-size:1.05rem;margin:24px 0 8px}.legal-card p{color:#9a968d;line-height:1.7}.legal-action{display:inline-flex;align-items:center;text-decoration:none;margin-top:10px}
+.textarea-field{height:auto;padding-top:12px;padding-bottom:12px}.textarea-field textarea{min-height:110px;resize:vertical}
+@media(max-width:980px){.admin-grid-5{grid-template-columns:repeat(2,1fr)}.group-form,.settings-row,.member-tools{grid-template-columns:1fr}.groups-list{grid-template-columns:1fr}}
