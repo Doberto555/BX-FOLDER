@@ -233,6 +233,10 @@ app.get('/admin', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'ad
 
 app.use((_req, res) => res.status(404).json({ ok: false, error: 'Not found' }))
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`BX FOLDER running on http://0.0.0.0:${PORT}`)
-})
+if (!process.env.VERCEL) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`BX FOLDER running on http://0.0.0.0:${PORT}`)
+  })
+}
+
+export default app
