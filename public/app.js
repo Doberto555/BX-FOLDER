@@ -37,11 +37,17 @@ form.addEventListener('submit', async event => {
     surname: $('#surname').value,
     phone: $('#phone').value,
     sex: form.elements.sex.value,
-    country: $('#country').value
+    country: $('#country').value,
+    consentVcf: $('#consent-vcf').checked
   }
 
   if (!payload.surname.trim() || !payload.phone.trim() || !payload.sex || !payload.country) {
     setMessage('Complète tous les champs.', 'error')
+    return
+  }
+
+  if (!payload.consentVcf) {
+    setMessage('Accepte le partage VCF pour continuer.', 'error')
     return
   }
 
