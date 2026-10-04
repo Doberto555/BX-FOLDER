@@ -1,0 +1,5 @@
+https://bx-folder.vercel.app/
+https://bx-folder.vercel.app/members
+https://bx-folder.vercel.app/privacy
+https://bx-folder.vercel.app/terms
+https://bx-folder.vercel.app/remove
