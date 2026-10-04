@@ -11,6 +11,7 @@
 <body>
   <div class="grain"></div>
   <main class="page-shell">
+    <section id="maintenance-banner" class="maintenance-banner" hidden></section>
     <header class="brand-block">
       <div class="brand-mark">BX</div>
       <h1>BX FOLDER</h1>
@@ -69,6 +70,15 @@
         <p id="form-message" class="form-message" aria-live="polite"></p>
       </form>
 
+      <section id="success-panel" class="success-panel" hidden>
+        <span class="eyebrow">INSCRIPTION VALIDÉE</span>
+        <div class="success-mark">✓</div>
+        <h3 id="success-name">Bienvenue</h3>
+        <p>Ton contact a bien été ajouté à BX FOLDER.</p>
+        <a id="success-group" class="gold-button success-link" href="#" target="_blank" rel="noopener">REJOINDRE LE GROUPE <span>→</span></a>
+        <button id="success-reset" class="text-button" type="button">Nouvelle inscription</button>
+      </section>
+
       <div class="capacity-box">
         <div class="capacity-row"><span>Capacité</span><b id="capacity-text">— / 50 000</b></div>
         <div class="progress"><span id="capacity-progress"></span></div>
@@ -78,6 +88,11 @@
 
     <footer>
       <span>BX FOLDER</span>
+      <nav class="footer-links">
+        <a href="/privacy">Confidentialité</a>
+        <a href="/terms">Conditions</a>
+        <a href="/remove">Retirer mon numéro</a>
+      </nav>
       <span id="prefix-note">PREFIX BX</span>
     </footer>
   </main>
