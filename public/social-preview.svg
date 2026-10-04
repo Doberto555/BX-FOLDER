@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="10%" r="85%">
+      <stop offset="0%" stop-color="#241d0d"/>
+      <stop offset="55%" stop-color="#0d0d0a"/>
+      <stop offset="100%" stop-color="#080805"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0%" stop-color="#c99723"/>
+      <stop offset="50%" stop-color="#f0c957"/>
+      <stop offset="100%" stop-color="#c99723"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect x="72" y="72" width="1056" height="486" rx="42" fill="#11110e" stroke="#6b5420" stroke-width="2"/>
+  <circle cx="600" cy="210" r="64" fill="#0a0a08" stroke="#d9ab39" stroke-width="2"/>
+  <text x="600" y="226" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="38" font-weight="800" fill="#f0c957">BX</text>
+  <text x="600" y="340" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="78" font-weight="800" letter-spacing="18" fill="#f5f2e8">BX FOLDER</text>
+  <text x="600" y="402" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="24" letter-spacing="12" fill="#928f84">CONTACT NETWORK</text>
+  <rect x="500" y="448" width="200" height="2" rx="1" fill="url(#gold)"/>
+  <text x="600" y="505" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="20" fill="#a8a49b">50 000 contacts · VCF · Communauté WhatsApp</text>
+</svg>
