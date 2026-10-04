@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Retirer mon numéro — BX FOLDER</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <main class="legal-shell">
+    <a class="back-link" href="/">← Retour</a>
+    <section class="legal-card">
+      <span class="eyebrow">PRIVACY REQUEST</span>
+      <h1>Retirer mon numéro</h1>
+      <p>Envoie une demande. L’administrateur pourra supprimer ton inscription et ton numéro de la base BX FOLDER.</p>
+      <form id="remove-form">
+        <label><span>Numéro avec indicatif pays</span><div class="field"><b>+</b><input id="remove-phone" inputmode="numeric" placeholder="509XXXXXXXX" required></div></label>
+        <label><span>Raison facultative</span><div class="field textarea-field"><textarea id="remove-reason" maxlength="300" placeholder="Explique ta demande"></textarea></div></label>
+        <button class="gold-button" type="submit">ENVOYER LA DEMANDE</button>
+        <p id="remove-message" class="form-message" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+  <script>
+    const f=document.getElementById('remove-form'),m=document.getElementById('remove-message');
+    f.addEventListener('submit',async e=>{
+      e.preventDefault();m.className='form-message';m.textContent='Envoi en cours…';
+      try{
+        const r=await fetch('/api/removal-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:document.getElementById('remove-phone').value,reason:document.getElementById('remove-reason').value})});
+        const d=await r.json();if(!r.ok)throw new Error(d.error||'Erreur');
+        f.reset();m.className='form-message success';m.textContent='Demande envoyée. Elle sera vérifiée par l’administrateur.';
+      }catch(err){m.className='form-message error';m.textContent=err.message}
+    });
+  </script>
+</body>
+</html>
