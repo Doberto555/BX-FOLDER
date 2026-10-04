@@ -96,11 +96,13 @@ app.post('/api/register', async (req, res) => {
     const phone = normalizePhone(req.body?.phone)
     const sex = String(req.body?.sex || '').trim().toLowerCase()
     const country = normalizeCountry(req.body?.country)
+    const consentVcf = req.body?.consentVcf === true
 
     if (surname.length < 2) return res.status(400).json({ ok: false, error: 'Enter a valid surname' })
     if (!/^\d{8,15}$/.test(phone)) return res.status(400).json({ ok: false, error: 'Enter the full phone number with country code' })
     if (!['male', 'female'].includes(sex)) return res.status(400).json({ ok: false, error: 'Choose a gender' })
     if (country.length < 2) return res.status(400).json({ ok: false, error: 'Choose a country' })
+    if (!consentVcf) return res.status(400).json({ ok: false, error: 'You must accept VCF contact sharing' })
 
     const total = await registrationCount()
     if (total >= MAX_REGISTRATIONS) {
@@ -110,7 +112,7 @@ app.post('/api/register', async (req, res) => {
     const displayName = `${CONTACT_PREFIX} ${surname}`.trim()
     const { data, error } = await supabase
       .from('bx_registrations')
-      .insert({ surname, display_name: displayName, phone, sex, country })
+      .insert({ surname, display_name: displayName, phone, sex, country, consent_vcf: true })
       .select('id, display_name, phone, created_at')
       .single()
 
@@ -156,7 +158,9 @@ app.get('/api/admin/overview', adminOnly, async (_req, res) => {
       },
       groupUrl: validGroupUrl(GROUP_URL) ? GROUP_URL : '',
       prefix: CONTACT_PREFIX,
-      recent: data || []
+      recent: data || [],
+      exportChunkSize: 5000,
+      exportParts: Math.max(1, Math.ceil(total / 5000))
     })
   } catch (error) {
     console.error('[admin overview]', error?.message || error)
@@ -172,23 +176,30 @@ function escapeVCard(value = '') {
     .replace(/,/g, '\\,')
 }
 
-app.get('/api/admin/download-vcf', adminOnly, async (_req, res) => {
+app.get('/api/admin/download-vcf', adminOnly, async (req, res) => {
   try {
+    const requestedOffset = Number.parseInt(String(req.query.offset || '0'), 10)
+    const requestedLimit = Number.parseInt(String(req.query.limit || MAX_REGISTRATIONS), 10)
+    const offset = Math.max(0, Math.min(MAX_REGISTRATIONS - 1, Number.isFinite(requestedOffset) ? requestedOffset : 0))
+    const limit = Math.max(1, Math.min(MAX_REGISTRATIONS - offset, Number.isFinite(requestedLimit) ? requestedLimit : MAX_REGISTRATIONS))
+
     const rows = []
     const pageSize = 1000
+    const endExclusive = offset + limit
 
-    for (let from = 0; from < MAX_REGISTRATIONS; from += pageSize) {
-      const to = Math.min(from + pageSize - 1, MAX_REGISTRATIONS - 1)
+    for (let from = offset; from < endExclusive; from += pageSize) {
+      const to = Math.min(from + pageSize - 1, endExclusive - 1)
       const { data, error } = await supabase
         .from('bx_registrations')
         .select('id, display_name, phone')
+        .eq('consent_vcf', true)
         .order('id', { ascending: true })
         .range(from, to)
 
       if (error) throw error
       if (!data?.length) break
       rows.push(...data)
-      if (data.length < pageSize) break
+      if (data.length < (to - from + 1)) break
     }
 
     const vcf = rows.map(row => [
@@ -201,8 +212,13 @@ app.get('/api/admin/download-vcf', adminOnly, async (_req, res) => {
     ].join('\r\n')).join('\r\n') + (rows.length ? '\r\n' : '')
 
     const date = new Date().toISOString().slice(0, 10)
+    const suffix = offset === 0 && limit >= MAX_REGISTRATIONS
+      ? ''
+      : `-PART-${Math.floor(offset / 5000) + 1}`
+
     res.setHeader('Content-Type', 'text/vcard; charset=utf-8')
-    res.setHeader('Content-Disposition', `attachment; filename="BX-FOLDER-${date}.vcf"`)
+    res.setHeader('Content-Disposition', `attachment; filename="BX-FOLDER${suffix}-${date}.vcf"`)
+    res.setHeader('X-BX-VCF-Contacts', String(rows.length))
     res.setHeader('Cache-Control', 'no-store')
     res.send(vcf)
   } catch (error) {
