@@ -13,7 +13,7 @@
   --radius: 26px;
 }
 * { box-sizing: border-box; }
-html { color-scheme: dark; }
+html { color-scheme: dark; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0;
   min-height: 100vh;
@@ -104,12 +104,47 @@ td { color:#c8c4bb; }
 .toast.show { transform:translateY(0); }
 
 @media (max-width:700px) {
-  .page-shell { width:min(100% - 22px,560px); padding-top:28px; }
-  .register-card { padding:22px; border-radius:22px; }
+  body { font-size:14px; }
+  .page-shell { width:min(100% - 24px,500px); padding:14px 0 22px; }
+  .brand-block { padding:2px 0 18px; }
+  .brand-mark { width:44px; height:44px; margin-bottom:10px; font-size:.86rem; }
+  .brand-block h1 { font-size:1.55rem; letter-spacing:.18em; text-indent:.18em; }
+  .brand-block p { margin-top:5px; font-size:.58rem; letter-spacing:.28em; text-indent:.28em; }
+  .gold-line { width:54px; margin-top:12px; }
+
+  .register-card { padding:17px; border-radius:18px; }
+  .card-head { gap:12px; margin-bottom:18px; }
+  .eyebrow { font-size:.6rem; }
+  .card-head h2 { font-size:1.22rem; }
+  .version-pill { width:44px; height:44px; font-size:.82rem; }
+
+  form { gap:14px; }
+  label>span, legend { margin-bottom:6px; font-size:.72rem; }
+  label small { margin-top:5px; font-size:.62rem; }
+  .field { height:50px; gap:9px; padding:0 13px; border-radius:12px; }
+  .field b { font-size:.68rem; min-width:20px; }
+  input,select,textarea { font-size:.9rem; }
+
+  .sex-grid { gap:10px; }
+  .choice span { height:50px; border-radius:12px; font-size:.78rem; }
+
+  .consent-row { gap:9px; padding:10px 12px; border-radius:12px; }
+  .consent-row input { width:16px; height:16px; flex-basis:16px; }
+  .consent-row span { font-size:.64rem!important; line-height:1.42!important; }
+
+  .gold-button { height:52px; border-radius:13px; font-size:.73rem; }
+  .form-message { min-height:18px; font-size:.74rem; }
+
+  .capacity-box { margin-top:18px; padding-top:16px; }
+  .capacity-row { font-size:.7rem; }
+  .capacity-box small { font-size:.63rem; }
+
+  .public-admin-row { justify-content:center; margin-bottom:10px; }
+  .site-admin-button { width:100%; min-height:36px; padding:0 12px; font-size:.65rem; border-radius:10px; }
+
   .admin-grid { grid-template-columns:1fr; }
   .admin-top { align-items:flex-start; flex-direction:column; }
-  .brand-block h1 { font-size:2rem; }
-  footer { flex-direction:column; align-items:center; }
+  footer { flex-direction:column; align-items:center; padding-top:16px; gap:9px; font-size:.56rem; }
 }
 
 .consent-row{display:flex;align-items:flex-start;gap:11px;padding:14px 15px;border:1px solid rgba(255,255,255,.055);border-radius:14px;background:rgba(255,255,255,.018)}
