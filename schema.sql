@@ -18,7 +18,8 @@ create index if not exists bx_registrations_created_at_idx
 create or replace function public.bx_enforce_capacity()
 returns trigger
 language plpgsql
-as $$
+set search_path = public
+as $
 declare
   current_total bigint;
 begin
