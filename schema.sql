@@ -46,6 +46,7 @@ create table if not exists public.bx_rate_limits (
 );
 
 create index if not exists bx_registrations_created_at_idx on public.bx_registrations(created_at desc);
+create index if not exists bx_registrations_group_id_idx on public.bx_registrations(group_id);
 create index if not exists bx_removal_requests_created_at_idx on public.bx_removal_requests(created_at desc);
 
 alter table public.bx_groups enable row level security;
@@ -159,3 +160,12 @@ as $$
   )
   from public.bx_registrations;
 $$;
+
+
+revoke all on function public.bx_admin_stats() from public, anon, authenticated;
+revoke all on function public.bx_assign_group() from public, anon, authenticated;
+revoke all on function public.bx_rate_limit_hit(text,text,integer,integer) from public, anon, authenticated;
+
+grant execute on function public.bx_admin_stats() to service_role;
+grant execute on function public.bx_assign_group() to service_role;
+grant execute on function public.bx_rate_limit_hit(text,text,integer,integer) to service_role;
