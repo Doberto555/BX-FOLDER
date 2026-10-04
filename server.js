@@ -34,7 +34,15 @@ app.set('trust proxy', 1)
 app.use(helmet({ contentSecurityPolicy: false, crossOriginResourcePolicy: false }))
 app.use(cors({ origin: true, credentials: false }))
 app.use(express.json({ limit: '80kb' }))
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: '10m', etag: true }))
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: '1h',
+  etag: true,
+  setHeaders(res, filePath) {
+    if (/\.html$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-store, max-age=0')
+    }
+  }
+}))
 
 const clean = value => String(value ?? '').trim()
 const normalizeSurname = value => clean(value).replace(/\s+/g, ' ').replace(/[<>]/g, '').slice(0, 60)
@@ -462,6 +470,7 @@ app.get('/api/admin/download-csv', adminOnly, async (_req, res) => {
 
 app.get('/health', (_req, res) => res.json({ ok: true, service: 'BX FOLDER', maxRegistrations: MAX_REGISTRATIONS }))
 app.get('/admin', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'admin.html')))
+app.get('/admin/members', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'members.html')))
 app.get('/privacy', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'privacy.html')))
 app.get('/terms', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'terms.html')))
 app.get('/remove', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'remove.html')))
