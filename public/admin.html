@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>BX FOLDER — Admin</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <div class="admin-top">
+      <div class="admin-title"><span class="eyebrow">OWNER CONTROL</span><h1>BX FOLDER ADMIN</h1></div>
+      <div class="admin-actions"><button id="refresh" class="btn">Actualiser</button><button id="logout" class="btn danger">Déconnexion</button></div>
+    </div>
+
+    <section class="admin-grid">
+      <article class="stat"><span>Inscrits</span><strong id="stat-total">—</strong></article>
+      <article class="stat"><span>Places restantes</span><strong id="stat-remaining">—</strong></article>
+      <article class="stat"><span>Capacité</span><strong id="stat-max">50 000</strong></article>
+    </section>
+
+    <section class="admin-card">
+      <div class="card-head"><div><span class="eyebrow">VCF EXPORT</span><h2>Fichier contacts</h2></div><div class="version-pill">BX</div></div>
+      <p style="color:#8b877e;line-height:1.6">Télécharge tous les contacts enregistrés. Chaque contact est exporté avec le préfixe <b style="color:#e0b543">BX</b> devant son surnom.</p>
+      <div class="admin-actions">
+        <button id="download-vcf" class="btn gold">Télécharger le fichier VCF</button>
+        <a id="group-link" class="btn" href="#" target="_blank" rel="noopener" style="text-decoration:none;display:inline-grid;place-items:center">Ouvrir le groupe</a>
+      </div>
+    </section>
+
+    <section class="admin-card">
+      <div class="card-head"><div><span class="eyebrow">RECENT MEMBERS</span><h2>Dernières inscriptions</h2></div></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Nom VCF</th><th>Téléphone</th><th>Sexe</th><th>Pays</th><th>Date</th></tr></thead>
+          <tbody id="rows"><tr><td colspan="6">Chargement…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="login-gate" class="gate">
+    <form id="login-form" class="login-card">
+      <span class="eyebrow">OWNER ACCESS</span>
+      <h2>BX FOLDER Admin</h2>
+      <p style="color:#817d74">Entre ton ADMIN_TOKEN.</p>
+      <input id="admin-token" type="password" autocomplete="current-password" placeholder="ADMIN_TOKEN" required>
+      <button class="btn gold" style="width:100%" type="submit">Ouvrir le panel</button>
+      <p id="login-error" class="form-message error"></p>
+    </form>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="/admin.js" defer></script>
+</body>
+</html>
