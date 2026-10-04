@@ -8,6 +8,7 @@ create table if not exists public.bx_registrations (
   phone text not null unique check (phone ~ '^[0-9]{8,15}$'),
   sex text not null check (sex in ('male', 'female')),
   country text not null check (char_length(country) between 2 and 80),
+  consent_vcf boolean not null default false,
   created_at timestamptz not null default now()
 );
 
@@ -37,3 +38,7 @@ for each row execute function public.bx_enforce_capacity();
 
 alter table public.bx_registrations enable row level security;
 -- No public policies are required: the server uses the service-role key.
+
+
+alter table public.bx_registrations
+  add column if not exists consent_vcf boolean not null default false;
